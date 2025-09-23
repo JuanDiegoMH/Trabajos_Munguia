@@ -64,6 +64,7 @@ public class SchedulerIO implements Model
 			writer.write(event.toString(), 0, event.toString().length());
 			writer.newLine();
 			writer.close();
+                        
 		} catch (FileNotFoundException fnfe) {
 			notice = "File not found"; 
 			notifyViews();
