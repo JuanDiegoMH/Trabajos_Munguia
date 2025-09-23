@@ -209,6 +209,14 @@ public class NewEventView extends JPanel implements View
 		btn_save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+                            // 🔹 Validación (nuevo)
+        if (tf_eventDesc.getText().trim().isEmpty() || tf_date.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(NewEventView.this,
+                "La descripción y la fecha son obligatorias",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 				SchedulerEvent event = new SchedulerEvent();
 				
 				event.setDate(SchedulerUtil.getDateFromString(tf_date.getText()));
