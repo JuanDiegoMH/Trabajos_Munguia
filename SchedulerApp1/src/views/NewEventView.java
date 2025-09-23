@@ -244,7 +244,7 @@ public class NewEventView extends JPanel implements View
 	private void make_btn_clean()
 	{
 		// Makes button
-		JButton btn_clean = new JButton("Clean");
+		JButton btn_clean = new JButton("Limpiar");
 		btn_clean.setBounds(253, 220, 89, 23);
 		add(btn_clean);
 
