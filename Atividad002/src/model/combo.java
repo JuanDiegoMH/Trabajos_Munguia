@@ -4,13 +4,13 @@
  */
 package model;
 
-public class combo {
+public class Combo {
     private String base;
     private String bebida;
     private String acompanamiento;
     private String extra;
 
-    public combo(String base) {
+    public Combo(String base) {
         this.base = base;
     }
 
