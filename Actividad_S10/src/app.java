@@ -2,15 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package atividad002;
 
-import mvc.ComboController;
-import mvc.ConsoleView;
+/**
+ *
+ * @author HUAWEI
+ */
+public class app {
 
-public class Atividad002 {
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        ConsoleView view = new ConsoleView();
-        ComboController controller = new ComboController(view);
-        controller.iniciar();
+        // TODO code application logic here
     }
+    
 }

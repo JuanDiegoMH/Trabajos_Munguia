@@ -2,8 +2,8 @@ package factory;
 
 import model.Combo;
 
-public class comboFactory {
-    public Combo crearcombo(String tipo) {
+public class ComboFactory {
+    public Combo crearCombo(String tipo) {
         switch (tipo.toLowerCase()) {
             case "hamburguesa":
                 return new Combo("Hamburguesa");
