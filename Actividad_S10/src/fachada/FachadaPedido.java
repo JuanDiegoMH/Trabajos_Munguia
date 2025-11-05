@@ -20,7 +20,7 @@ public class FachadaPedido {
         System.out.println("🔹 Procesando pedido...");
 
         if (!servicioStock.validarStock(producto, cantidad)) {
-            System.out.println("❌ Error: cantidad inválida o sin stock suficiente.");
+            System.out.println("Error: cantidad inválida o sin stock suficiente.");
             return;
         }
 

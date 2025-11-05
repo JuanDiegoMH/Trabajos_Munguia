@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+import fachada.FachadaPedido;
+import modelo.Producto;
 
-/**
- *
- * @author HUAWEI
- */
 public class app {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Producto producto1 = new Producto("Laptop Lenovo", 2500.00, 5);
+        Producto producto2 = new Producto("Mouse Logitech", 100.00, 10);
+
+        FachadaPedido fachada = new FachadaPedido();
+
+        fachada.procesarPedido("Juan Perez", producto1, 2);
+        System.out.println("\n-------------------------------\n");
+        fachada.procesarPedido("Ana Torres", producto2, 1);
     }
-    
 }
