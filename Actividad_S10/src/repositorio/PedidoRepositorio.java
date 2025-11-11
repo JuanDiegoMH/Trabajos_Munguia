@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package repositorio;
 
-/**
- *
- * @author HUAWEI
- */
+import java.util.ArrayList;
+import java.util.List;
+import modelo.Pedido;
+
 public class PedidoRepositorio {
-    
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public void guardar(Pedido pedido) {
+        pedidos.add(pedido);
+    }
+
+    public List<Pedido> obtenerTodos() {
+        return pedidos;
+    }
 }

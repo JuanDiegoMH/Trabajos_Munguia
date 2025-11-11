@@ -1,4 +1,6 @@
+
 import fachada.FachadaPedido;
+import impuesto.*;
 import modelo.Producto;
 
 public class app {
@@ -8,8 +10,14 @@ public class app {
 
         FachadaPedido fachada = new FachadaPedido();
 
-        fachada.procesarPedido("Juan Perez", producto1, 2);
-        System.out.println("\n-------------------------------\n");
+        System.out.println("=== Pedido con IGV 18% ===");
+        fachada.setEstrategiaImpuesto(new IGV18Estrategia());
+        fachada.procesarPedido("Juan Pérez", producto1, 2);
+
+        System.out.println("\n=== Pedido exonerado de IGV ===");
+        fachada.setEstrategiaImpuesto(new ExoneradoEstrategia());
         fachada.procesarPedido("Ana Torres", producto2, 1);
+
+        fachada.mostrarPedidosGuardados();
     }
 }
