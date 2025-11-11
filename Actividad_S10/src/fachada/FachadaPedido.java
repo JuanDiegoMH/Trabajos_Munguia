@@ -24,15 +24,15 @@ public class FachadaPedido {
     }
 
     public void procesarPedido(String cliente, Producto producto, int cantidad) {
-        System.out.println("🔹 Procesando pedido...");
+        System.out.println("Procesando pedido...");
 
         if (!servicioStock.validarStock(producto, cantidad)) {
-            System.out.println("❌ Error: cantidad inválida o sin stock suficiente.");
+            System.out.println("Error: cantidad inválida o sin stock suficiente.");
             return;
         }
 
         if (estrategiaImpuesto == null) {
-            System.out.println("⚠️ No se ha definido una estrategia de impuesto.");
+            System.out.println("No se ha definido una estrategia de impuesto.");
             return;
         }
 
