@@ -61,7 +61,7 @@ public class FachadaPedido {
     }
 
     public void mostrarPedidosGuardados() {
-        System.out.println("\n📦 Pedidos registrados en el repositorio:");
+        System.out.println("\nPedidos registrados en el repositorio:");
         for (Pedido p : repositorio.obtenerTodos()) {
             System.out.println("- " + p.getCliente() + " compró " + p.getProducto().getNombre() + " (Total: S/ " + p.getTotal() + ")");
         }
