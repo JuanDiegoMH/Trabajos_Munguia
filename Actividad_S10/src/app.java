@@ -12,7 +12,7 @@ public class app {
 
         System.out.println("=== Pedido con IGV 18% ===");
         fachada.setEstrategiaImpuesto(new IGV18Estrategia());
-        fachada.procesarPedido("Juan Pérez", producto1, 2);
+        fachada.procesarPedido("Juan Perez", producto1, 2);
 
         System.out.println("\n=== Pedido exonerado de IGV ===");
         fachada.setEstrategiaImpuesto(new ExoneradoEstrategia());
