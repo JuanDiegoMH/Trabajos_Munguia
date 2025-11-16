@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package observador;
 
-/**
- *
- * @author HUAWEI
- */
-public class ClienteObservador {
-    
+import modelo.Pedido;
+
+public class ClienteObservador implements Observador {
+    @Override
+    public void notificar(Pedido pedido) {
+        System.out.println("Notificación al Cliente: Su pedido ha sido procesado. Total: S/ " + pedido.getTotal());
+    }
 }
+

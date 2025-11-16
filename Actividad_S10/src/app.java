@@ -1,23 +1,54 @@
-
 import fachada.FachadaPedido;
-import impuesto.*;
+import hilos.HiloGenerarFactura;
+import hilos.HiloNotificaciones;
+import hilos.HiloProcesarPedido;
+import impuesto.IGV18Estrategia;
+import impuesto.ExoneradoEstrategia;
 import modelo.Producto;
+import observador.ClienteObservador;
+import observador.InventarioObservador;
+import observador.LogObservador;
 
 public class app {
-    public static void main(String[] args) {
-        Producto producto1 = new Producto("Laptop Lenovo", 2500.00, 5);
-        Producto producto2 = new Producto("Mouse Logitech", 100.00, 10);
 
+    public static void main(String[] args) {
+
+        System.out.println("\n====== SISTEMA DE PEDIDOS Y FACTURACIÓN ======\n");
+
+        // Crear la fachada
         FachadaPedido fachada = new FachadaPedido();
 
-        System.out.println("=== Pedido con IGV 18% ===");
-        fachada.setEstrategiaImpuesto(new IGV18Estrategia());
-        fachada.procesarPedido("Juan Perez", producto1, 2);
+        // Estrategia de impuesto
+        fachada.establecerEstrategiaImpuesto(new IGV18Estrategia());
 
-        System.out.println("\n=== Pedido exonerado de IGV ===");
-        fachada.setEstrategiaImpuesto(new ExoneradoEstrategia());
-        fachada.procesarPedido("Ana Torres", producto2, 1);
+        // Observadores (Observer)
+        fachada.agregarObservador(new ClienteObservador());
+        fachada.agregarObservador(new InventarioObservador());
+        fachada.agregarObservador(new LogObservador());
 
-        fachada.mostrarPedidosGuardados();
+        // Productos de ejemplo
+        Producto hamburguesa = new Producto("Hamburguesa Clásica", 15.00, 20);
+        Producto papas = new Producto("Papas Fritas", 8.00, 10);
+        Producto gaseosa = new Producto("Gaseosa 500ml", 5.00, 30);
+
+        // Hilos
+        Thread hiloProcesar = new Thread(new HiloProcesarPedido(fachada, "Juan", hamburguesa, 2));
+        Thread hiloFactura = new Thread(new HiloGenerarFactura());
+        Thread hiloNotificaciones = new Thread(new HiloNotificaciones());
+
+        // Iniciar hilos
+        hiloProcesar.start();
+        hiloFactura.start();
+        hiloNotificaciones.start();
+
+        try {
+            hiloProcesar.join();
+            hiloFactura.join();
+            hiloNotificaciones.join();
+        } catch (InterruptedException e) {
+            System.out.println("Error al sincronizar los hilos.");
+        }
+
+        System.out.println("\n===== FIN DEL PROCESO =====");
     }
 }

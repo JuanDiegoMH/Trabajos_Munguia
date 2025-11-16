@@ -26,6 +26,10 @@ public class Pedido {
         this.impuesto = impuesto;
         this.total = total;
     }
+
+    public void establecerMontos(double subtotal, double impuesto, double total) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 
 
