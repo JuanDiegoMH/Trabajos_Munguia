@@ -6,4 +6,3 @@ public class IGV18Estrategia implements EstrategiaImpuesto {
         return subtotal * 0.18;
     }
 }
-

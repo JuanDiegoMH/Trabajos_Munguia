@@ -5,19 +5,15 @@ import modelo.Pedido;
 import servicio.ServicioFactura;
 
 public class AdaptadorFactura implements ServicioFactura {
-    private SistemaFacturacionAntiguo sistemaAntiguo;
 
-    public AdaptadorFactura(SistemaFacturacionAntiguo sistemaAntiguo) {
-        this.sistemaAntiguo = sistemaAntiguo;
-    }
+    private SistemaFacturacionAntiguo sistemaAntiguo = new SistemaFacturacionAntiguo();
 
     @Override
     public void generarFactura(Pedido pedido) {
         sistemaAntiguo.crearFacturaAntigua(
-            pedido.getCliente(),
-            pedido.getProducto().getNombre(),
-            pedido.getTotal()
+                pedido.getCliente(),
+                pedido.getProducto().getNombre(),
+                pedido.getTotal()
         );
     }
 }
-

@@ -1,7 +1,5 @@
+
 import fachada.FachadaPedido;
-import hilos.HiloGenerarFactura;
-import hilos.HiloNotificaciones;
-import hilos.HiloProcesarPedido;
 import impuesto.IGV18Estrategia;
 import impuesto.ExoneradoEstrategia;
 import modelo.Producto;
@@ -13,42 +11,59 @@ public class app {
 
     public static void main(String[] args) {
 
-        System.out.println("\n====== SISTEMA DE PEDIDOS Y FACTURACIÓN ======\n");
+        System.out.println("=== INICIO DEL SISTEMA ===");
 
-        // Crear la fachada
+        // Instancia de la fachada
         FachadaPedido fachada = new FachadaPedido();
 
-        // Estrategia de impuesto
-        fachada.establecerEstrategiaImpuesto(new IGV18Estrategia());
-
-        // Observadores (Observer)
+        // Agregar observadores
         fachada.agregarObservador(new ClienteObservador());
         fachada.agregarObservador(new InventarioObservador());
         fachada.agregarObservador(new LogObservador());
 
-        // Productos de ejemplo
-        Producto hamburguesa = new Producto("Hamburguesa Clásica", 15.00, 20);
-        Producto papas = new Producto("Papas Fritas", 8.00, 10);
-        Producto gaseosa = new Producto("Gaseosa 500ml", 5.00, 30);
+        // Establecer estrategia de impuesto (ej. IGV 18%)
+        fachada.establecerEstrategiaImpuesto(new IGV18Estrategia());
+        // Si quieres exonerado, usa:
+        // fachada.establecerEstrategiaImpuesto(new ExoneradoEstrategia());
 
-        // Hilos
-        Thread hiloProcesar = new Thread(new HiloProcesarPedido(fachada, "Juan", hamburguesa, 2));
-        Thread hiloFactura = new Thread(new HiloGenerarFactura());
-        Thread hiloNotificaciones = new Thread(new HiloNotificaciones());
+        // Crear productos (asegúrate que el constructor de Producto sea (nombre, precio, stock))
+        Producto hamburguesa = new Producto("Hamburguesa Clasica", 15.0, 20);
+        Producto papas = new Producto("Papas Fritas", 8.0, 10);
+
+        // Hilos: procesar pedidos en paralelo (usa lambdas para no depender de clases de hilo)
+        Thread hilo1 = new Thread(() -> {
+            fachada.procesarPedido("Juan Perez", hamburguesa, 2);
+        }, "Hilo-Pedido-1");
+
+        Thread hilo2 = new Thread(() -> {
+            fachada.procesarPedido("Ana Gomez", papas, 1);
+        }, "Hilo-Pedido-2");
+
+        // Hilo adicional que simula tareas de notificación (opcional)
+        Thread hiloNotificaciones = new Thread(() -> {
+            try {
+                Thread.sleep(300);
+                System.out.println("[HILO NOTIFICACIONES] Ejecutando tareas de notificacion...");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "Hilo-Notificaciones");
 
         // Iniciar hilos
-        hiloProcesar.start();
-        hiloFactura.start();
+        hilo1.start();
+        hilo2.start();
         hiloNotificaciones.start();
 
+        // Esperar a que terminen
         try {
-            hiloProcesar.join();
-            hiloFactura.join();
+            hilo1.join();
+            hilo2.join();
             hiloNotificaciones.join();
         } catch (InterruptedException e) {
             System.out.println("Error al sincronizar los hilos.");
+            e.printStackTrace();
         }
 
-        System.out.println("\n===== FIN DEL PROCESO =====");
+        System.out.println("=== FIN DEL SISTEMA ===");
     }
 }

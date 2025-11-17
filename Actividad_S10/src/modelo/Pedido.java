@@ -17,19 +17,12 @@ public class Pedido {
     public String getCliente() { return cliente; }
     public Producto getProducto() { return producto; }
     public int getCantidad() { return cantidad; }
+
     public double getSubtotal() { return subtotal; }
     public double getImpuesto() { return impuesto; }
     public double getTotal() { return total; }
 
-    public void calcularMontos(double subtotal, double impuesto, double total) {
-        this.subtotal = subtotal;
-        this.impuesto = impuesto;
-        this.total = total;
-    }
-
-    public void establecerMontos(double subtotal, double impuesto, double total) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public void setSubtotal(double subtotal) { this.subtotal = subtotal; }
+    public void setImpuesto(double impuesto) { this.impuesto = impuesto; }
+    public void setTotal(double total) { this.total = total; }
 }
-
-
