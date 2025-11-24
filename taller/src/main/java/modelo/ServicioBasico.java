@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author HUAWEI
- */
-public class ServicioBasico {
-    
+public class ServicioBasico extends Servicio {
+
+    private String detalleBasico;
+
+    public ServicioBasico() {
+        super();
+        this.detalleBasico = "Servicio básico estándar";
+    }
+
+    public String getDetalleBasico() { return detalleBasico; }
+    public void setDetalleBasico(String detalleBasico) { this.detalleBasico = detalleBasico; }
 }

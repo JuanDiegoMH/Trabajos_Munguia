@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author HUAWEI
- */
-public class ServicioComplejo {
-    
+public class ServicioComplejo extends Servicio {
+
+    private String diagnostico;
+    private int horasTrabajo;
+
+    public ServicioComplejo() {
+        super();
+        this.diagnostico = "Sin diagnóstico";
+        this.horasTrabajo = 0;
+    }
+
+    public String getDiagnostico() { return diagnostico; }
+    public void setDiagnostico(String diagnostico) { this.diagnostico = diagnostico; }
+
+    public int getHorasTrabajo() { return horasTrabajo; }
+    public void setHorasTrabajo(int horasTrabajo) { this.horasTrabajo = horasTrabajo; }
 }
