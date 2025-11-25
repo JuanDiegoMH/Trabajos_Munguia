@@ -4,6 +4,7 @@ public enum TipoServicio {
     BASICO,
     COMPLEJO,
     MANTENIMIENTO,
-    REPARACION
+    REPARACION,
+    DIAGNOSTICO
 }
 

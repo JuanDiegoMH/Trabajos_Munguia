@@ -1,16 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.taller;
 
-/**
- *
- * @author HUAWEI
- */
+import patrones.SistemaTaller;
+import patrones.NotificadorStock;
+import patrones.AlertaAdministrador;
+import vista.LoginVista;
+
 public class Taller {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        // Activar Singleton
+        SistemaTaller sistema = SistemaTaller.getInstancia();
+        sistema.iniciar();
+
+        // Activar Patron Observer
+        NotificadorStock notificador = new NotificadorStock();
+        AlertaAdministrador admin = new AlertaAdministrador();
+        notificador.agregarObservador(admin);
+
+        // Notificación inicial de prueba
+        notificador.notificar("Sistema iniciado correctamente. Todo listo.");
+
+        // Lanzar interfaz gráfica
+        LoginVista login = new LoginVista();
+        login.setVisible(true);
     }
 }
